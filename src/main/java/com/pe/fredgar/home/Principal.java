@@ -18,23 +18,27 @@ public class Principal {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(RUTA_DATA);
         List<Person> personList = objectMapper.readValue(file, new TypeReference<List<Person>>() {});
+
+
+
         personList.stream()
                 .filter(pais -> pais.getPais().equalsIgnoreCase("Peru"))
-                .limit(10)
                 .map(x -> {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     LocalDate fechaNacimiento = LocalDate.parse(x.getFecha_nac(), formatter);
                     Period edad = Period.between(fechaNacimiento, LocalDate.now());
-                   /*System.out.println(String.format("%d años, %d meses y %d días",
-                           edad.getYears(),
-                           edad.getMonths(),
-                           edad.getDays()));*/
-                    return x.getNombre() + " " +
-                            x.getApellido() + " " +
-                            x.getPais() + " " +
-                            x.getFecha_nac() + " " +
-                            x.getMoneda() + " " +
-                            edad.getYears();
+                   // StringBuilder stringBuilder = new StringBuilder();
+                    return new StringBuilder()
+                            .append(x.getNombre())
+                            .append(" ")
+                            .append(x.getApellido())
+                            .append(" ")
+                            .append(x.getPais())
+                            .append(" ")
+                            .append(x.getFecha_nac())
+                            .append(" ")
+                            .append(edad.getYears())
+                            .toString();
                 }).limit(3)
                 .forEach(System.out::println);
 
