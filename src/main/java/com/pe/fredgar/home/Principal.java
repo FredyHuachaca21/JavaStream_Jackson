@@ -2,8 +2,6 @@ package com.pe.fredgar.home;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import com.pe.fredgar.model.Person;
 
 import java.io.File;
